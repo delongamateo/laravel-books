@@ -13,7 +13,7 @@
     {{-- link to parent category --}}
     @if ($category)
 
-        <a href="{{ action('EshopController@category', [$category->id]) }}">Back to category {{ $category->name }}</a>
+        <a href="{{ action('EshopController@category', [ $category->id ]) }}">Back to category {{ $category->name }}</a>
 
     @endif
 
