@@ -23,3 +23,7 @@ Route::get('/api/books', 'APIBookController@index');
 Route::get('/api/books/{id}', 'APIBookController@show');
 
 Route::get('/eshop', 'EshopController@index');
+
+Route::get('/eshop/categories/{id}', 'EshopController@category');
+
+Route::get('/eshop/subcategories/{id}', 'EshopController@subcategory');

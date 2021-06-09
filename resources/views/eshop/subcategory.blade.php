@@ -4,26 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Books eshop</title>
+    <title>Subcategory: {{ $subcategory->name }} | Books eshop</title>
 </head>
 <body>
 
-    <h1>Books eshop</h1>
+    <h1>Subcategory: {{ $subcategory->name }}</h1>
 
-    {{-- list of categories --}}
-    <h2>Categories</h2>
+    {{-- link to parent category --}}
+    @if ($category)
 
-    <div class="categories">
+        <a href="{{ action('EshopController@category', [$category->id]) }}">Back to category {{ $category->name }}</a>
 
-        @foreach ($categories as $category)
-
-            <li>
-                <a href="{{ action('EshopController@category', [$category->id]) }}">{{ $category->name }}</a>
-            </li>
-
-        @endforeach
-
-    </div>
+    @endif
 
     {{-- list of books --}}
     <h2>Books</h2>
