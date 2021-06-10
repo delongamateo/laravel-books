@@ -40,11 +40,6 @@ class EshopController extends Controller
     {
         $category = Category::findOrFail($category_id);
 
-        // $subcategories = Subcategory::where('category_id', $category_id)->orderBy('name')->get();
-        // $subcategories = $category->subcategories;
-
-        // $books = $category->books; // Book::where('category_id', $category_id)->orderBy('title')->get();
-
         return view('eshop.category', compact('category'));
     }
 
