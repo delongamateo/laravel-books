@@ -22,46 +22,7 @@ class AuthorController extends Controller
     {
         $author = new Author;
 
-        return view('authors.create', compact('author'));
-    }
-
-    /**
-     * handle the submission of the create form
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|min:8',
-            'bio' => [
-                'required',
-                'min:20',
-                function ($attribute, $value, $fail) {
-                    if (false !== strpos($value, 'damn')) {
-                        $fail('No swearing in the class.');
-                    }
-                }
-            ]
-        ], [
-            'name.required' => 'Just give us the name, man!',
-            'name.min' => 'Nobody has a name that short'
-        ]);
-
-        // prepare empty object
-        $author = new Author;
-
-        // fill object with request data
-        $author->name = $request->input('name');
-        $author->bio = $request->input('bio');
-        $author->slug = Str::slug( $author->name );
-
-        // save the object
-        $author->save();
-
-        // flash success message
-        session()->flash('success_message', 'Author saved!');
-
-        // redirect to next page (edit)
-        return redirect()->action('AuthorController@edit', [$author->id]);
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -76,9 +37,9 @@ class AuthorController extends Controller
     }
 
     /**
-     * handles the submission of the edit form
+     * handle the submission of the create and edit form
      */
-    public function update(Request $request, $id)
+    public function store(Request $request, $id = null)
     {
         $this->validate($request, [
             'name' => 'required|min:8',
@@ -96,8 +57,13 @@ class AuthorController extends Controller
             'name.min' => 'Nobody has a name that short'
         ]);
 
-        // retrieve saved object from the database
-        $author = Author::findOrFail($id);
+        if ($id) { // there is an id in the URL == EDIT
+            // retrieve saved object from the database
+            $author = Author::findOrFail($id);
+        } else { // no id in URL == CREATE
+            // prepare empty object
+            $author = new Author;
+        }
 
         // fill object with request data
         $author->name = $request->input('name');

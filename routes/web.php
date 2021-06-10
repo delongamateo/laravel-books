@@ -37,6 +37,6 @@ Route::resource('/books', 'BookController');
 // authors
 Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/create', 'AuthorController@create');
-Route::post('/authors', 'AuthorController@store');
+Route::post('/authors', 'AuthorController@store')->name('authors.store');
 Route::get('/authors/{id}/edit', 'AuthorController@edit');
-Route::put('/authors/{id}', 'AuthorController@update');
+Route::put('/authors/{id}', 'AuthorController@store')->name('authors.update');

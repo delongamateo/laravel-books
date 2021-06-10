@@ -1,14 +1,25 @@
 @extends('layouts.main', [
-    'title' => 'Edit an author'
+    'title' => $author->id ? 'Edit an author' : 'Create new author'
 ])
 
 @section('content')
 
-<h2>Edit an author: {{ $author->name }}</h2>
+@if ($author->id) {{-- if the author is already saved == EDIT --}}
 
-<form action="{{ action('AuthorController@update', [$author->id]) }}" method="post">
-    @csrf
+    <h2>Edit an author: {{ $author->name }}</h2>
+
+    <form action="{{ route('authors.update', [$author->id]) }}" method="post">
     @method('put')
+
+@else {{-- author is not saved yet == CREATE --}}
+
+    <h2>Create a new author</h2>
+
+    <form action="{{ route('authors.store') }}" method="post">
+
+@endif
+
+    @csrf
 
     @component('components.form-group', [
         'label' => 'Name',
