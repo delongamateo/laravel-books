@@ -35,7 +35,15 @@
 
                 <div class="book__author">{{ $book->authors }}</div>
 
+                <div class="book_category">{{ optional($book->category)->name }}</div>
+
                 <img src="{{ $book->image }}" alt="Cover of {{ $book->title }}">
+
+                <ul>
+                    @foreach ($book->bookshops as $bookshop)
+                        <li>Available at {{ $bookshop->name }}</li>
+                    @endforeach
+                </ul>
 
                 <a href="#">Detail of a book</a>
 

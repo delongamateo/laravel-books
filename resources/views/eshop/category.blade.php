@@ -11,7 +11,7 @@
 
         <div class="categories">
 
-            @foreach ($subcategories as $subcategory)
+            @foreach ($category->subcategories as $subcategory)
 
                 <li>
                     <a href="{{ action('EshopController@subcategory', [$subcategory->id]) }}">{{ $subcategory->name }}</a>
@@ -26,13 +26,15 @@
 
         <div class="books">
 
-            @foreach ($books as $book)
+            @foreach ($category->books as $book)
 
                 <div class="book">
 
                     <h3 class="book__title">{{ $book->title }}</h3>
 
                     <div class="book__author">{{ $book->authors }}</div>
+
+                    <div class="book_category">{{ optional($book->category)->name }}</div>
 
                     <img src="{{ $book->image }}" alt="Cover of {{ $book->title }}">
 
