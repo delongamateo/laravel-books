@@ -20,7 +20,9 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('authors.create');
+        $author = new Author;
+
+        return view('authors.create', compact('author'));
     }
 
     /**
@@ -28,6 +30,22 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|min:8',
+            'bio' => [
+                'required',
+                'min:20',
+                function ($attribute, $value, $fail) {
+                    if (false !== strpos($value, 'damn')) {
+                        $fail('No swearing in the class.');
+                    }
+                }
+            ]
+        ], [
+            'name.required' => 'Just give us the name, man!',
+            'name.min' => 'Nobody has a name that short'
+        ]);
+
         // prepare empty object
         $author = new Author;
 
@@ -43,7 +61,7 @@ class AuthorController extends Controller
         session()->flash('success_message', 'Author saved!');
 
         // redirect to next page (edit)
-        return redirect()->action('AuthorController@index');
+        return redirect()->action('AuthorController@edit', [$author->id]);
     }
 
     /**
@@ -62,6 +80,22 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'name' => 'required|min:8',
+            'bio' => [
+                'required',
+                'min:20',
+                function ($attribute, $value, $fail) {
+                    if (false !== strpos($value, 'damn')) {
+                        $fail('No swearing in the class.');
+                    }
+                }
+            ]
+        ], [
+            'name.required' => 'Just give us the name, man!',
+            'name.min' => 'Nobody has a name that short'
+        ]);
+
         // retrieve saved object from the database
         $author = Author::findOrFail($id);
 
@@ -77,6 +111,6 @@ class AuthorController extends Controller
         session()->flash('success_message', 'Author saved!');
 
         // redirect to next page (edit)
-        return redirect()->action('AuthorController@index');
+        return redirect()->action('AuthorController@edit', [$author->id]);
     }
 }
