@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(255, 255, 195);
+    color: black;
+}
+
+header {
+    nav {
+        padding: 1em;
+        background-color: #00000033;
+        a {
+            color: black;
+            margin-left: 1em;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &.current {
+                text-decoration: none;
+                font-weight: bold;
+            }
+        }
+    }
+}

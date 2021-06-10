@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Books eshop</title>
-</head>
-<body>
+@extends('layouts.main', [
+    'title' => 'Home',
+    'current_menu_item' => 'home'
+])
+
+@section('content')
 
     <h1>Books eshop</h1>
 
@@ -48,5 +45,4 @@
 
     </div>
 
-</body>
-</html>
+    @endsection

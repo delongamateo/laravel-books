@@ -1,30 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>List of bookshops</title>
-</head>
-<body>
+@extends('layouts.main', [
+    'title' => 'List of bookshops',
+    'current_menu_item' => 'bookshops'
+])
 
-    <h1>List of bookshops</h1>
+@section('content')
 
-    <a class="create-button" href="{{ action('BookshopController@create') }}">Create a new bookshop</a>
+<h1>List of bookshops</h1>
 
-    <div class="bookshops">
+<a class="create-button" href="{{ action('BookshopController@create') }}">Create a new bookshop</a>
 
-        @foreach ($bookshops as $bookshop)
+<div class="bookshops">
 
-            <div class="bookshop">
-                <h3 class="bookshop__name">{{ $bookshop->name }}</h3>
+    @foreach ($bookshops as $bookshop)
 
-                <div class="bookshop__city">{{ $bookshop->city }}</div>
-            </div>
+        <div class="bookshop">
+            <h3 class="bookshop__name">{{ $bookshop->name }}</h3>
 
-        @endforeach
+            <div class="bookshop__city">{{ $bookshop->city }}</div>
+        </div>
 
-    </div>
+    @endforeach
 
-</body>
-</html>
+</div>
+
+@endsection
