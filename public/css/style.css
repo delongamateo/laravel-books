@@ -2,6 +2,20 @@
   box-sizing: border-box;
 }
 
+form {
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+}
+.form-group__input {
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   background-color: #ffffc3;
   color: black;
