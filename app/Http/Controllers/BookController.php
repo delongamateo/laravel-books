@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -13,7 +14,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -23,7 +26,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:3|max:255',
+            'authors' => 'required|min:3|max:255',
+            'image' => 'required|min:3|max:255'
+        ]);
+
+        $book = new Book;
+        $book->title = $request->input('title');
+        $book->authors = $request->input('authors');
+        $book->image = $request->input('image');
+        $book->save();
+
+
+        return redirect(action('BookController@index'));
     }
 
     /**
@@ -45,7 +61,9 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -56,7 +74,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::findOrFail($id);
+
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -68,7 +88,19 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|min:3|max:255',
+            'authors' => 'required|min:3|max:255',
+            'image' => 'required|min:3|max:255'
+        ]);
+
+        $book = Book::findOrFail($id);
+        $book->title = $request->input('title');
+        $book->authors = $request->input('authors');
+        $book->image = $request->input('image');
+        $book->save();
+
+        return redirect(action('BookController@index'));
     }
 
     /**
@@ -79,6 +111,9 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->delete();
+
+        return redirect(action('BookController@index'));
     }
 }
