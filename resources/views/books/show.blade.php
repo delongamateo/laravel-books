@@ -19,4 +19,11 @@
             <button type="submit">Delete</button>
         </form>
     </p>
+
+    <form method="post" action="{{ action('BookController@storeReview', [$book->id]) }}">
+        @csrf
+        <textarea name="text" cols="30" rows="10"></textarea>
+        <input type="number" min="0" max="10" step="1" name="rating">
+        <input type="submit" value="Submit">
+    </form>
 @endsection

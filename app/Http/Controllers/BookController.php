@@ -121,4 +121,13 @@ class BookController extends Controller
 
         return redirect(action('BookController@index'));
     }
+
+
+    public function storeReview($book_id, Request $request){
+        $book = Book::findOrFail($book_id);
+
+        return $request->all();
+
+        return redirect(action('BookController@show', $book->id));
+    }
 }

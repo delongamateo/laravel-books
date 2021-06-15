@@ -34,6 +34,8 @@ Route::get('/bookshops', 'BookshopController@index');
 
 Route::resource('/books', 'BookController');
 
+Route::post('/books/{id}/review', 'BookController@storeReview');
+
 // authors
 Route::get('/authors', 'AuthorController@index');
 Route::get('/authors/create', 'AuthorController@create');
