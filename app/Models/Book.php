@@ -13,8 +13,6 @@ class Book extends Model
         return $this->belongsTo(Publisher::class, 'publisher_id');
     }
 
-
-
     /**
      * relationship to 1 category
      */

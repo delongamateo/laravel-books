@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Publisher extends Model
 {
     public function books(){
-        return $this->hasMany(Book::class, 'publisher_id', 'id');
+        return $this->hasMany(Book::class, 'publisher_id');
     }
 }

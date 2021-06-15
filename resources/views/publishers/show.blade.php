@@ -10,8 +10,6 @@
             <h4>{{ $book->title }}</h4>
         </div>
     @endforeach
-    @foreach($publisher->books as $book)
-    @endforeach
 
 
 @endsection
