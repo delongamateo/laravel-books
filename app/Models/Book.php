@@ -9,6 +9,14 @@ use App\Models\Bookshop;
 
 class Book extends Model
 {
+
+    protected $fillable = [
+        'title',
+        'authors',
+        'image'
+    ];
+
+
     public function publisher(){
         return $this->belongsTo(Publisher::class, 'publisher_id');
     }

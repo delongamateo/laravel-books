@@ -44,11 +44,13 @@ class BookController extends Controller
             'image' => 'required|min:3|max:255'
         ]);
 
-        $book = new Book;
-        $book->title = $request->input('title');
-        $book->authors = $request->input('authors');
-        $book->image = $request->input('image');
-        $book->save();
+        $book = Book::create($request->all());
+
+//        $book = new Book;
+//        $book->title = $request->input('title');
+//        $book->authors = $request->input('authors');
+//        $book->image = $request->input('image');
+//        $book->save();
 
 
         return redirect(action('BookController@index'));
