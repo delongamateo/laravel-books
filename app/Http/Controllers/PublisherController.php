@@ -15,10 +15,13 @@ class PublisherController extends Controller
     }
 
     public function show($id){
-        $publisher = Publisher::findOrFail($id);
+//        $publisher = Publisher::findOrFail($id);
+        $publisher = Publisher::with('books')->findOrFail($id);
 
-        $books = Book::where('publisher_id', $id)->get();
+//        $books = Book::where('publisher_id', $publisher->id)->get();
+        $books = $publisher->books;
 
-        return view('publishers.show', compact('publisher', 'books'));
+//        return view('publishers.show', compact('publisher', 'books'));
+        return view('publishers.show', compact('publisher'));
     }
 }

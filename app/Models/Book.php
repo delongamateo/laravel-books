@@ -9,7 +9,11 @@ use App\Models\Bookshop;
 
 class Book extends Model
 {
-    use HasFactory;
+    public function publisher(){
+        return $this->belongsTo(Publisher::class, 'publisher_id');
+    }
+
+
 
     /**
      * relationship to 1 category
@@ -23,4 +27,6 @@ class Book extends Model
     {
         return $this->belongsToMany(Bookshop::class);
     }
+
+
 }

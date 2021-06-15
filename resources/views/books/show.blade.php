@@ -6,6 +6,7 @@
     <img src="{{ $book->image }}" alt="{{ $book->title }}">
     <h3>{{ $book->title }}</h3>
     <p>{{ $book->authors }}</p>
+    <p>Published by: {{ $book->publisher->title }}</p>
     <p>
         <a href="{{ action('BookController@edit', [$book->id]) }}">Edit</a>
         <form method="post" action="{{ action('BookController@destroy', [$book->id]) }}">

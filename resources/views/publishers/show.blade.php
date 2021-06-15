@@ -5,11 +5,12 @@
     <a href="{{ action('PublisherController@index') }}">Back to index of publishers</a>
 
     <h3>Books</h3>
-
-    @foreach($books as $book)
+    @foreach($publisher->books as $book)
         <div>
             <h4>{{ $book->title }}</h4>
         </div>
+    @endforeach
+    @foreach($publisher->books as $book)
     @endforeach
 
 

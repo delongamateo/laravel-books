@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -62,8 +63,9 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrFail($id);
+        $publisher = Publisher::find($book->publisher_id);
 
-        return view('books.show', compact('book'));
+        return view('books.show', compact('book', 'publisher'));
     }
 
     /**
