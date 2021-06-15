@@ -33,5 +33,9 @@ class Book extends Model
         return $this->belongsToMany(Bookshop::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 
 }
