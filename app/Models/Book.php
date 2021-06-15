@@ -16,7 +16,6 @@ class Book extends Model
         'image'
     ];
 
-
     public function publisher(){
         return $this->belongsTo(Publisher::class, 'publisher_id');
     }

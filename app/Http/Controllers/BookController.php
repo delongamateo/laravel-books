@@ -98,10 +98,12 @@ class BookController extends Controller
         ]);
 
         $book = Book::findOrFail($id);
-        $book->title = $request->input('title');
-        $book->authors = $request->input('authors');
-        $book->image = $request->input('image');
-        $book->save();
+        $book->update($request->all());
+
+//        $book->title = $request->input('title');
+//        $book->authors = $request->input('authors');
+//        $book->image = $request->input('image');
+//        $book->save();
 
         return redirect(action('BookController@index'));
     }
