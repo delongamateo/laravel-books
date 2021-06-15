@@ -29,4 +29,11 @@
         <input type="number" min="0" max="10" step="1" name="rating">
         <input type="submit" value="Submit">
     </form>
+
+    @foreach($book->reviews as $review)
+        <p>
+            {{ $review->text }}
+        </p>
+    @endforeach
+
 @endsection
