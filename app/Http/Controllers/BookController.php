@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Publisher;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -124,10 +125,17 @@ class BookController extends Controller
 
 
     public function storeReview($book_id, Request $request){
-        $book = Book::findOrFail($book_id);
+
+        Review::create($request->all());
+
 
         return $request->all();
 
-        return redirect(action('BookController@show', $book->id));
+
+
+//        $book = Book::findOrFail($book_id);
+
+
+//        return redirect(action('BookController@show', $book->id));
     }
 }

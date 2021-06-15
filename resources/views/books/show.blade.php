@@ -20,9 +20,12 @@
         </form>
     </p>
 
-    <form method="post" action="{{ action('BookController@storeReview', [$book->id]) }}">
+    <form method="post" action="{{ action('BookController@storeReview', $book->id) }}">
         @csrf
         <textarea name="text" cols="30" rows="10"></textarea>
+
+        <input type="hidden" name="book_id" value="{{ $book->id }}">
+
         <input type="number" min="0" max="10" step="1" name="rating">
         <input type="submit" value="Submit">
     </form>
