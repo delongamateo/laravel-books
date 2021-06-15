@@ -126,16 +126,12 @@ class BookController extends Controller
 
     public function storeReview($book_id, Request $request){
 
-        Review::create($request->all());
+        $data = $request->all();
 
+        $data['book_id'] = $book_id;
 
-        return $request->all();
+        Review::create($data);
 
-
-
-//        $book = Book::findOrFail($book_id);
-
-
-//        return redirect(action('BookController@show', $book->id));
+        return redirect(action('BookController@show', $book_id));
     }
 }
