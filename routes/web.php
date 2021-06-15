@@ -40,3 +40,6 @@ Route::get('/authors/create', 'AuthorController@create');
 Route::post('/authors', 'AuthorController@store')->name('authors.store');
 Route::get('/authors/{id}/edit', 'AuthorController@edit');
 Route::put('/authors/{id}', 'AuthorController@store')->name('authors.update');
+
+Route::get('/publishers', 'PublisherController@index');
+Route::get('/publishers/{id}', 'PublisherController@show');
