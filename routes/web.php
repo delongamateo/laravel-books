@@ -49,5 +49,5 @@ Route::get('/publishers', 'PublisherController@index');
 Route::get('/publishers/{id}', 'PublisherController@show');
 
 Route::get('/reservations', 'ReservationController@index');
-Route::get('/reservations/create', 'ReservationController@create');
+Route::get('/reservations/create', 'ReservationController@create')->middleware('auth');
 Route::post('/reservations', 'ReservationController@store');
