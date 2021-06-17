@@ -20,6 +20,17 @@
         </form>
     </p>
 
+    <h3>Order</h3>
+    <form method="post" action="{{ action('OrderController@store', $book->id) }}">
+        @csrf
+
+        {{-- <input type="hidden" name="book_id" value="{{ $book->id }}"> --}}
+
+        <input type="number" min="0" step="1" name="quantity">
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3>Reviews</h3>
     <form method="post" action="{{ action('BookController@storeReview', $book->id) }}">
         @csrf
         <textarea name="text" cols="30" rows="10"></textarea>

@@ -51,3 +51,6 @@ Route::get('/publishers/{id}', 'PublisherController@show');
 Route::get('/reservations', 'ReservationController@index');
 Route::get('/reservations/create', 'ReservationController@create')->middleware('auth');
 Route::post('/reservations', 'ReservationController@store');
+
+Route::post('/books/{book_id}/order', 'OrderController@store');
+Route::get('/orders', 'OrderController@index');
