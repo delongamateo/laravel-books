@@ -47,7 +47,7 @@ Route::put('/authors/{id}', 'AuthorController@store')->name('authors.update');
 Route::get('/publishers', 'PublisherController@index');
 Route::get('/publishers/{id}', 'PublisherController@show');
 
-Route::get('/reservations', 'ReservationController@index');
+Route::get('/reservations', 'ReservationController@index')->middleware('can:admin');
 
 Route::get('/reservations/create', 'ReservationController@create')->middleware('auth');
 
