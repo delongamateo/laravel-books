@@ -32,7 +32,7 @@ Route::get('/bookshops/create', 'BookshopController@create');
 Route::post('/bookshops', 'BookshopController@store');
 Route::get('/bookshops', 'BookshopController@index');
 
-Route::resource('/books', 'BookController');
+
 
 Route::post('/books/{id}/review', 'BookController@storeReview');
 
@@ -44,13 +44,23 @@ Route::get('/authors/{id}/edit', 'AuthorController@edit');
 Route::put('/authors/{id}', 'AuthorController@store')->name('authors.update');
 
 
-
 Route::get('/publishers', 'PublisherController@index');
 Route::get('/publishers/{id}', 'PublisherController@show');
 
 Route::get('/reservations', 'ReservationController@index');
+
 Route::get('/reservations/create', 'ReservationController@create')->middleware('auth');
+
 Route::post('/reservations', 'ReservationController@store');
 
-Route::post('/books/{book_id}/order', 'OrderController@store');
-Route::get('/orders', 'OrderController@index');
+Route::resource('/books', 'BookController')->middleware('auth');
+
+Route::group(['middleware' => ['auth']], function () {
+
+    Route::post('/books/{book_id}/order', 'OrderController@store');
+    Route::get('/orders', 'OrderController@index');
+
+//    Route::resource('/books', 'BookController');
+
+});
+

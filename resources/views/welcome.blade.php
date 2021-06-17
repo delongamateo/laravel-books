@@ -57,10 +57,13 @@
                 </svg>
             </div>
 
+            <pre style="color: white">{{ Auth::id() }}</pre>
             <pre style="color: white">{{ Auth::user() }}</pre>
 
             @if(Auth::check())
                 <h1 style="color: white">Hello, {{ Auth::user()->name }}</h1>
+            @else
+                <h1 style="color: white">Hello guest</h1>
             @endif
 
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">

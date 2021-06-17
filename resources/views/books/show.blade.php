@@ -21,14 +21,22 @@
     </p>
 
     <h3>Order</h3>
-    <form method="post" action="{{ action('OrderController@store', $book->id) }}">
-        @csrf
 
-        {{-- <input type="hidden" name="book_id" value="{{ $book->id }}"> --}}
+{{--    @if(Auth::check())--}}
+        <form method="post" action="{{ action('OrderController@store', $book->id) }}">
+            @csrf
 
-        <input type="number" min="0" step="1" name="quantity">
-        <input type="submit" value="Submit">
-    </form>
+            {{-- <input type="hidden" name="book_id" value="{{ $book->id }}"> --}}
+
+            {{-- Don't to this: --}}
+            {{-- <input type="hidden" name="user_id" value="{{ Auth::id() }}"> --}}
+
+            <input type="number" min="0" step="1" name="quantity">
+            <input type="submit" value="Submit">
+        </form>
+{{--    @else--}}
+{{--        You need to <a href="{{ route('login') }}">login</a> first!--}}
+{{--    @endif--}}
 
     <h3>Reviews</h3>
     <form method="post" action="{{ action('BookController@storeReview', $book->id) }}">
