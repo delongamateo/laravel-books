@@ -53,7 +53,7 @@ Route::get('/reservations/create', 'ReservationController@create')->middleware('
 
 Route::post('/reservations', 'ReservationController@store');
 
-Route::resource('/books', 'BookController')->middleware('auth');
+Route::resource('/books', 'BookController');
 
 Route::group(['middleware' => ['auth']], function () {
 
